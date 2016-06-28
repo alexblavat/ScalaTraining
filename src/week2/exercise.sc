@@ -4,7 +4,7 @@ object exercise {
     def loop(acc: Int, n: Int): Int =
       if(n == 0) acc
       else loop(acc * n, n - 1)
-      loop(1, n)
+    loop(1, n)
   }
 
   factorial(4)
@@ -55,10 +55,16 @@ object exercise {
     abs((x-y)/x)/x < tolerance
   def fixedPoint(f:Double=>Double)(firstGuess: Double) = {
     def iterate(guess: Double): Double = {
+      println("guess = "+ guess)
       val next = f(guess)
       if(isCloseEnough(guess, next)) next
       else iterate(next)
     }
     iterate(firstGuess)
   }
+  println("Fixed Point call")
+  fixedPoint(x=>1 + x/2)(1)
+
+  def sqrt(x: Double) = fixedPoint(y => ((y+x)/y)/2)(1.0)
+  sqrt(2)
 }
