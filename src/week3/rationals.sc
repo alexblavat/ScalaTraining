@@ -1,10 +1,14 @@
 
 object rationals {
   class Rational(x:Int, y:Int) {
+    require (y != 0, "Denominator must be non-zero")
     private def gcd(a: Int, b:Int):Int = if(b==0) a else gcd(b, a % b)
-    private val g = gcd(x,y)
+
     def numer = x / g
     def denom = y / g
+
+    def this(x: Int) = this (x,1)
+
     def add(that: Rational) =
       new Rational(numer * that.denom + that.numer * denom,
         denom * that.denom)
@@ -18,7 +22,10 @@ object rationals {
     def max(that: Rational) =
       if (this.less(that)) that else this
 
-    override def toString = numer + "/" + denom
+    override def toString = {
+      val g = gcd(x,y)
+      numer/g + "/" + denom/g
+    }
   } // end class
   println("====================================================")
   def addRational(r: Rational, s: Rational): Rational =
