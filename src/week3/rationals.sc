@@ -4,8 +4,8 @@ object rationals {
     require (y != 0, "Denominator must be non-zero")
     private def gcd(a: Int, b:Int):Int = if(b==0) a else gcd(b, a % b)
 
-    def numer = x / g
-    def denom = y / g
+    def numer = x
+    def denom = y
 
     def this(x: Int) = this (x,1)
 
